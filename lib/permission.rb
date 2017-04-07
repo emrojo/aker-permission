@@ -1,7 +1,6 @@
 module AkerAuthorisationGem
   class Permission < ApplicationRecord
     belongs_to :accessible, polymorphic: true
-    belongs_to :permittable, polymorphic: true
 
     PERMISSIONS = [:r, :w, :x]
 
@@ -15,6 +14,10 @@ module AkerAuthorisationGem
 
     def has_permission?(permission)
       permissions.include?(permission)
+    end
+
+    def permittable
+      return permitted
     end
   end
 end

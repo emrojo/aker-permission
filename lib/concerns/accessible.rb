@@ -13,8 +13,8 @@ module AkerAuthorisationGem
       end
 
       # Takes a user_or_group as a string e.g. "blackbeard@sanger.ac.uk" and an access parameter e.g. :r
-      def permitted?(user_or_group, access)
-        self.permissions.exists?(permitted: user_or_group, "#{access.to_s}": true)
+      def permitted?(email_or_group, access)
+        self.permissions.exists?(permitted: email_or_group, "#{access.to_s}": true)
       end
     end
 
