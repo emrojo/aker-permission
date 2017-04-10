@@ -16,8 +16,5 @@ module AkerAuthorisationGem
       permissions.include?(permission)
     end
 
-    def permittable
-      return permitted
-    end
   end
 end

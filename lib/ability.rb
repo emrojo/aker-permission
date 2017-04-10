@@ -12,6 +12,11 @@ class Ability
     can :write, AkerAuthorisationGem::Accessible do |accessible|
       permitted?(accessible, user, :w)
     end
+
+    can :execute, AkerAuthorisationGem::Accessible do |accessible|
+      permitted?(accessible, user, :x)
+    end
+
   end
 
   def permitted?(accessible, user_data, access)
