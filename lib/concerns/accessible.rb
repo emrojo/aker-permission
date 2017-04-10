@@ -1,11 +1,11 @@
 require 'active_support/concern'
 
-module AkerAuthorisationGem
+module AkerPermissionGem
   module Accessible
     extend ActiveSupport::Concern
 
     included do
-      has_many :permissions, as: :accessible, :class_name => 'AkerAuthorisationGem::Permission'
+      has_many :permissions, as: :accessible, :class_name => 'AkerPermissionGem::Permission'
       #after_create :set_default_permission
 
       def set_default_permission(user_email)

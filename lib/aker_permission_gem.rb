@@ -1,9 +1,9 @@
-require "aker_authorisation_gem/version"
+require "aker_permission_gem/version"
 
 autoload :Ability, 'ability'
 autoload :Accessible,      'concerns/accessible'
 
-module AkerAuthorisationGem
+module AkerPermissionGem
   autoload :Ability,         'ability'
   autoload :Accessible,      'concerns/accessible'
   autoload :Permission,      'permission'

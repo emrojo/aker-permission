@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'aker_authorisation_gem/version'
+require 'aker_permission_gem/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "aker_authorisation_gem"
-  spec.version       = AkerAuthorisationGem::VERSION
+  spec.name          = "aker_permission_gem"
+  spec.version       = AkerPermissionGem::VERSION
   spec.authors       = ["Eduardo Martin Rojo"]
   spec.email         = ["emr@sanger.ac.uk"]
 

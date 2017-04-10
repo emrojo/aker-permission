@@ -3,17 +3,17 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :create, AkerAuthorisationGem::Accessible
+    can :create, AkerPermissionGem::Accessible
 
-    can :read, AkerAuthorisationGem::Accessible do |accessible|
+    can :read, AkerPermissionGem::Accessible do |accessible|
       permitted?(accessible, user, :r)
     end
 
-    can :write, AkerAuthorisationGem::Accessible do |accessible|
+    can :write, AkerPermissionGem::Accessible do |accessible|
       permitted?(accessible, user, :w)
     end
 
-    can :execute, AkerAuthorisationGem::Accessible do |accessible|
+    can :execute, AkerPermissionGem::Accessible do |accessible|
       permitted?(accessible, user, :x)
     end
 

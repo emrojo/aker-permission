@@ -1,8 +1,8 @@
 require "spec_helper"
 
-RSpec.describe AkerAuthorisationGem do
+RSpec.describe AkerPermissionGem do
   it "has a version number" do
-    expect(AkerAuthorisationGem::VERSION).not_to be nil
+    expect(AkerPermissionGem::VERSION).not_to be nil
   end
 
   it "does something useful" do

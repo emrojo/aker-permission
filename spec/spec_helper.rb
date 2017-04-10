@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "aker_authorisation_gem"
+require "aker_permission_gem"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
