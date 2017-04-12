@@ -20,12 +20,12 @@ class Ability
   end
 
   def permitted?(accessible, user_data, access)
-    if user_data.is_a? Hash
-      user = user_data['user']
-      groups = user_data['groups']
-      return accessible.permitted?(user['email'], access) || accessible.permitted?(groups, access)
-    else
-      accessible.permitted?(user_data.email, access) || accessible.permitted?(user_data.fetch_groups, access)
-    end
+    #if user_data.is_a? Hash
+    #  user = user_data['user']
+    #  groups = user_data['groups']
+    #  return accessible.permitted?(user['email'], access) || accessible.permitted?(groups, access)
+    #else
+      accessible.permitted?(user_data.email, access) || accessible.permitted?(user_data.groups, access)
+    #end
   end
 end

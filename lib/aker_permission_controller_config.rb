@@ -1,6 +1,7 @@
 module AkerPermissionControllerConfig
   def self.included(base)
     base.instance_eval do
+
       check_authorization
 
       rescue_from CanCan::AccessDenied do |exception|
