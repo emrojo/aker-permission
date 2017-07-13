@@ -1,6 +1,9 @@
 module AkerPermissionClientConfig
   def check_permissions?(role, user_email)
-  	return true
+  	mapping = {read: :r, write: :w, execute: :x}  	
+  	permissions.any? do |permission|
+  	  (permission.permitted == user_email) && (permission.send(mapping[role]))
+  	end
   end
 
   def self.included(base)
@@ -8,7 +11,7 @@ module AkerPermissionClientConfig
 	  def self.authorize!(role, resource, user_email)
 	  	raise CanCan::AccessDenied.new("Not authorized!", role, resource) unless user_email
 		if resource.kind_of? String
-		  instance = find(resource).first
+		  instance = where(id: resource).includes(:permissions).first
 		else
 		  instance = resource
 		end
