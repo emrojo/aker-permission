@@ -23,7 +23,7 @@ module AkerPermissionClientConfig
 	  	  	instance = where(id: resource.id).includes(:permissions).first
 	  	  end
 	  	end
-		unless instance.has_permissions?(user_email, role)
+		unless instance.has_permission?(user_email, role)
 		  raise CanCan::AccessDenied.new("Not authorised to perform #{role} on #{instance.class.to_s} #{instance.id}", 
 		  	role, instance)
 		end
