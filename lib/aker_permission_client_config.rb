@@ -8,8 +8,6 @@ module AkerPermissionClientConfig
   def self.included(base)
     base.instance_eval do
       def self.authorize!(role, resource, user_email)
-        raise AkerPermissionGem::NotAuthorized.new("Not authorized!") unless user_email
-
         # We need to have a resource that has the permissions included. If the paramter does not have
         # it, we obtain it again with the inclusion of the permissions
         if resource.respond_to?(:permissions)
