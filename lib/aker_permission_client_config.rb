@@ -1,8 +1,7 @@
 module AkerPermissionClientConfig
   def has_permission?(user_email, role)
-    mapping = {read: :r, write: :w, execute: :x}
     permissions.any? do |permission|
-      (permission.permitted == user_email) && (permission.send(mapping[role]))
+      permission.permitted == user_email && permission.permission_type.to_s==role.to_s
     end
   end
 
