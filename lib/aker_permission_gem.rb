@@ -10,4 +10,7 @@ module AkerPermissionGem
   autoload :Ability,         'ability'
   autoload :Accessible,      'concerns/accessible'
   autoload :Permission,      'permission'
+
+  class NotAuthorized < StandardError
+  end
 end
