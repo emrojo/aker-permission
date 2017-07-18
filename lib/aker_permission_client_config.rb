@@ -6,7 +6,23 @@ module AkerPermissionClientConfig
   end
 
   def self.included(base)
-    base.instance_eval do
+
+    base.instance_eval do |klass|
+
+      name = 'Permission'
+      klass = Object.const_set name, Class.new(JsonApiClient::Resource) do 
+        belongs_to base
+      end
+
+      klass.instance_eval do
+        define_method :permission_type do
+          attributes["permission-type"]
+        end
+      end
+
+      has_many :permissions
+
+
       def self.authorize!(role, resource, user_email)
         # We need to have a resource that has the permissions included. If the paramter does not have
         # it, we obtain it again with the inclusion of the permissions

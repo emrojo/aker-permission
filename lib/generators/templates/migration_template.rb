@@ -7,7 +7,7 @@ class CreatePermissions < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     add_index :permissions, :permitted
-    add_index :permissions, [:permitted, :permission_type, :accessible_id, :accessible_type ], unique: true
+    #add_index :permissions, [:permitted, :permission_type, :accessible_id, :accessible_type ], unique: true
   end
 
   def accessible_id_type

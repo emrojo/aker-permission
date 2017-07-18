@@ -1,9 +1,11 @@
 require 'spec_helper'
-
+require 'json_api_client'
 RSpec.describe 'AkerPermissionClientConfig' do
   context 'a client using this config' do
     before do
       class MyClient
+        def self.has_many(arg)
+        end
         include AkerPermissionClientConfig
       end
     end
