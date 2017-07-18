@@ -6,27 +6,40 @@ module AkerPermissionClientConfig
   end
 
   def self.included(base)
-    base.instance_eval do
-    def self.authorize!(role, resource, user_email)
-      raise CanCan::AccessDenied.new("Not authorized!", role, resource) unless user_email
 
-      # We need to have a resource that has the permissions included. If the paramter does not have
-      # it, we obtain it again with the inclusion of the permissions
-      if resource.respond_to?(:permissions)
-        instance = resource
-      else
-        # If the parameter is an id:
-        if resource.kind_of? String
-          instance = where(id: resource).includes(:permissions).first
+    base.instance_eval do |klass|
+
+      # name = 'Permission'
+      # klass = Object.const_set name, Class.new(JsonApiClient::Resource) do 
+      #   belongs_to base
+      # end
+
+      # klass.instance_eval do
+      #   define_method :permission_type do
+      #     attributes["permission-type"]
+      #   end
+      # end
+
+      # has_many :permissions
+
+
+      def self.authorize!(role, resource, user_email)
+        # We need to have a resource that has the permissions included. If the paramter does not have
+        # it, we obtain it again with the inclusion of the permissions
+        if resource.respond_to?(:permissions)
+          instance = resource
         else
-          instance = where(id: resource.id).includes(:permissions).first
+          # If the parameter is an id:
+          if resource.kind_of? String
+            instance = where(id: resource).includes(:permissions).first
+          else
+            instance = where(id: resource.id).includes(:permissions).first
+          end
+        end
+        unless instance.has_permission?(user_email, role)
+          raise AkerPermissionGem::NotAuthorized.new("Not authorised to perform #{role} on #{instance.class.to_s} #{instance.id}")
         end
       end
-    unless instance.has_permission?(user_email, role)
-      raise CanCan::AccessDenied.new("Not authorised to perform #{role} on #{instance.class.to_s} #{instance.id}",
-        role, instance)
     end
-    end
-  end
   end
 end

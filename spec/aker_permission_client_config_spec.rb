@@ -1,13 +1,11 @@
 require 'spec_helper'
-
+require 'json_api_client'
 RSpec.describe 'AkerPermissionClientConfig' do
   context 'a client using this config' do
     before do
-      module CanCan::AccessDenied::I18n
-        def self.t(a,b)
-        end
-      end
       class MyClient
+        def self.has_many(arg)
+        end
         include AkerPermissionClientConfig
       end
     end
@@ -42,17 +40,17 @@ RSpec.describe 'AkerPermissionClientConfig' do
         it 'raises an exception if it does not have the correct permission' do
           @permissions = [double('Permission', permitted: @user, permission_type: :read)]
           allow(@response).to receive(:permissions).and_return(@permissions)
-          expect{MyClient.authorize!(@role, @resource, @user)}.to raise_error(CanCan::AccessDenied)
+          expect{MyClient.authorize!(@role, @resource, @user)}.to raise_error(AkerPermissionGem::NotAuthorized)
         end
         it 'raises an exception if it does not have any permission' do
           @permissions = [double('Permission', permitted: 'otheruser', permission_type: :execute)]
           allow(@response).to receive(:permissions).and_return(@permissions)
-          expect{MyClient.authorize!(@role, @resource, @user)}.to raise_error(CanCan::AccessDenied)
+          expect{MyClient.authorize!(@role, @resource, @user)}.to raise_error(AkerPermissionGem::NotAuthorized)
         end
         it 'raises an exception if there is no permission specified' do
           @permissions = []
           allow(@response).to receive(:permissions).and_return(@permissions)
-          expect{MyClient.authorize!(@role, @resource, @user)}.to raise_error(CanCan::AccessDenied)
+          expect{MyClient.authorize!(@role, @resource, @user)}.to raise_error(AkerPermissionGem::NotAuthorized)
         end
         it 'performs validation while using resource id instead of resource' do
           @permissions = [double('Permission', permitted: @user, permission_type: :execute)]
