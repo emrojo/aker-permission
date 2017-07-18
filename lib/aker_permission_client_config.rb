@@ -9,18 +9,18 @@ module AkerPermissionClientConfig
 
     base.instance_eval do |klass|
 
-      name = 'Permission'
-      klass = Object.const_set name, Class.new(JsonApiClient::Resource) do 
-        belongs_to base
-      end
+      # name = 'Permission'
+      # klass = Object.const_set name, Class.new(JsonApiClient::Resource) do 
+      #   belongs_to base
+      # end
 
-      klass.instance_eval do
-        define_method :permission_type do
-          attributes["permission-type"]
-        end
-      end
+      # klass.instance_eval do
+      #   define_method :permission_type do
+      #     attributes["permission-type"]
+      #   end
+      # end
 
-      has_many :permissions
+      # has_many :permissions
 
 
       def self.authorize!(role, resource, user_email)
