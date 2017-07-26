@@ -5,7 +5,7 @@ module AkerPermissionGem
     extend ActiveSupport::Concern
 
     included do
-      has_many :permissions, as: :accessible, :class_name => 'AkerPermissionGem::Permission'
+      has_many :permissions, as: :accessible, :class_name => 'AkerPermissionGem::Permission', dependent: :delete_all
       #after_create :set_default_permission
 
       def set_default_permission(user_email)
