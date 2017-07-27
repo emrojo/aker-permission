@@ -1,7 +1,7 @@
 module AkerPermissionClientConfig
   def has_permission?(username_and_groups, role)
     permissions.any? do |permission|
-      username_and_groups.include?(permission.permitted) && permission.attributes["permission-type"].to_s==role.to_s
+      username_and_groups.include?(permission.permitted) && permission.permission_type.to_s==role.to_s
     end
   end
 
