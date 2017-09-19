@@ -15,6 +15,7 @@ class Ability
   end
 
   def permitted?(accessible, user, permission_type)
+    return false if user.nil?
     permission_type==:create || accessible&.permitted?(user.email, permission_type) || accessible&.permitted?(user.groups, permission_type)
   end
 end
