@@ -1,4 +1,8 @@
-# AkerPermissionGem
+# Aker - Permission gem
+
+[![Build Status](https://travis-ci.org/sanger/aker-permission.svg?branch=master)](https://travis-ci.org/sanger/aker-permission)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7e55936f372eaf0ed1a0/maintainability)](https://codeclimate.com/github/sanger/aker-permission/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7e55936f372eaf0ed1a0/test_coverage)](https://codeclimate.com/github/sanger/aker-permission/test_coverage)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/aker_permission_gem`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -33,4 +37,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/aker_permission_gem.
-

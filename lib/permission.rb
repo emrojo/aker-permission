@@ -2,19 +2,16 @@ module AkerPermissionGem
   class Permission < ApplicationRecord
     belongs_to :accessible, polymorphic: true
 
-    PERMISSIONS = [:r, :w, :x]
+    before_save :sanitise_permitted
+    before_validation :sanitise_permitted
 
-    def permissions=(permissions)
-      PERMISSIONS.each { |p| self.send(p.to_s+'=', permissions.include?(p)) }
+    def sanitise_permitted
+      if permitted
+        sanitised = permitted.strip.downcase
+        if sanitised != permitted
+          self.permitted = sanitised
+        end
+      end
     end
-
-    def permissions
-      PERMISSIONS.select { |p| self.send(p) }
-    end
-
-    def has_permission?(permission)
-      permissions.include?(permission)
-    end
-
   end
 end
